@@ -1,18 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {App} from './components/app/app'
-//import { Settings } from './const'
+import { Settings } from './const'
+import { offers } from './mocks/offers'
+import { offersList } from './mocks/offers-list'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <React.StrictMode>
-    <App />
+    <App rentalOffersCount={Settings.rentOffersCount} offersList={offersList} offers = {offers} />
   </React.StrictMode>
 )
-
-// root.render(
-//   <React.StrictMode>
-//     <App rentalOffersCount={Settings.rentOffersCount} />
-//   </React.StrictMode>
-// )

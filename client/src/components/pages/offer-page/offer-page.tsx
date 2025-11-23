@@ -1,19 +1,24 @@
 import { JSX } from "react";
-import { CitiesCard } from "../../cities-card/cities-card";
 import { ReviewsItem } from "../../reviews-item/reviews-item";
 import { OfferHost } from "../../offer-host/offer-host";
 import { OfferInside } from "../../offer-inside/offer-inside";
+import { Logo } from "../../logo/logo";
+import { FullOffer, OffersList } from "../../../types/offer";
+import { CitiesCardList } from "../../cities-card-list/cities-card-list";
 
-function OfferPage(): JSX.Element{
+type OfferProps = {
+  offer: FullOffer;
+  offers: OffersList[];
+}
+
+function OfferPage({offer, offers}: OfferProps): JSX.Element{
 return(
     <div className="page">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="Rent service logo" width="81" height="41"/>
-              </a>
+              <Logo />
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -40,34 +45,21 @@ return(
   <section className="offer">
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
-        <div className="offer__image-wrapper">
-          <img className="offer__image" src="img/room.jpg" alt="Photo studio" />
-        </div>
-        <div className="offer__image-wrapper">
-          <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio" />
-        </div>
-        <div className="offer__image-wrapper">
-          <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio" />
-        </div>
-        <div className="offer__image-wrapper">
-          <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio" />
-        </div>
-        <div className="offer__image-wrapper">
-          <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio" />
-        </div>
-        <div className="offer__image-wrapper">
-          <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio" />
-        </div>
+        {offer.images.map((item) => (
+          <div key={item} className="offer__image-wrapper">
+            <img className="offer__image" src={item} alt="Photo studio" />          </div>
+        ))}
       </div>
     </div>
     <div className="offer__container container">
       <div className="offer__wrapper">
-        <div className="offer__mark">
-          <span>Premium</span>
-        </div>
+        {offer.isPremium ? (
+          <div className="offer__mark">
+            <span>Premium</span>
+          </div>) : null}
         <div className="offer__name-wrapper">
           <h1 className="offer__name">
-            Beautiful &amp; luxurious studio at great location
+            {offer.title}
           </h1>
           <button className="offer__bookmark-button button" type="button">
             <svg className="offer__bookmark-icon" width="31" height="33">
@@ -101,7 +93,7 @@ return(
         
         <OfferInside />
       
-        <OfferHost />
+        <OfferHost host={offer.host}/>
         <section className="offer__reviews reviews">
           <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
           <ul className="reviews__list">
@@ -164,11 +156,7 @@ return(
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        <CitiesCard/>
-        <CitiesCard/>
-        <CitiesCard/>
-
-
+        <CitiesCardList offersList={offers}/>
       </div>
     </section>
   </div>
