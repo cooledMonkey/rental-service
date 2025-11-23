@@ -2,7 +2,7 @@ import { OffersList } from "../types/offer";
 
 export const offersList: OffersList[] = [
     {
-    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b',
+    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b1',
     'title': 'Wood and stone place',
     'type': 'apartment',
     'price': 370,
@@ -50,7 +50,7 @@ export const offersList: OffersList[] = [
 'rating': 4.9,
 },
     {
-    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b',
+    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b2',
     'title': 'Wood and stone place',
     'type': 'apartment',
     'price': 370,
@@ -74,13 +74,13 @@ export const offersList: OffersList[] = [
 'rating': 4.9,
 },
     {
-    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b',
+    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b3',
     'title': 'Wood and stone place',
     'type': 'apartment',
     'price': 370,
     'previewImage': '/img/amsterdam.jpg',
 'city': {
-'name': 'Paris',
+'name': 'Amsterdam',
 'location': {
 'latitude': 48.85661,
 'longitude': 2.351499,

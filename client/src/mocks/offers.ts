@@ -3,7 +3,7 @@ import {FullOffer} from '../types/offer';
 
 const offers: FullOffer[] = [
 {
-    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b',
+    'id': 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b1',
     'title': 'Wood and stone place',
     'description': 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families ',
     'type': 'apartment',
@@ -31,7 +31,7 @@ const offers: FullOffer[] = [
 },
 'goods': [ 'Heating', 'Wi-Fi',
 'Fridge',
-'Laptop friendly workspace',
+'Laptop friendly',
 'Baby seat',
 'Air conditioning',
 'Washer',
@@ -48,13 +48,13 @@ const offers: FullOffer[] = [
 },
 
 'isPremium': false,
-'isFavorite': true,
+'isFavorite': false,
 'rating': 4.9,
 'bedrooms': 2,
 'maxAdults': 3
 },
 {
-  "id": "aaa07b1f-4c83-447e-8c85-dc85c7d49e3c",
+  "id": "bbb06a0e-3f92-446d-9a68-cb64b5d38e2b",
   "title": "Montmartre Artist Attic",
   "description": "Charming attic apartment in artistic Montmartre. Skylight windows, wooden beams, and view over Parisian rooftops. Steps from Sacré-Cœur and local cafes.",
   "type": "apartment",
@@ -83,7 +83,7 @@ const offers: FullOffer[] = [
     "Heating",
     "Kitchen",
     "Coffee machine",
-    "Laptop friendly workspace",
+    "Laptop friendly",
     "Hair dryer",
     "Essentials",
     "Baby seat",
@@ -101,7 +101,7 @@ const offers: FullOffer[] = [
   "maxAdults": 2
 },
 {
-  "id": "bbb18c2g-5d94-558f-9d96-ed96d8e50f4d",
+  "id": "bbb06a0e-3f92-446d-9a68-cb64b5d38e2b2",
   "title": "HafenCity Modern Apartment",
   "description": "Brand new apartment in Hamburg's trendy HafenCity district. Floor-to-ceiling windows with harbor views, minimalist design, and close to Elbphilharmonie.",
   "type": "apartment",
@@ -134,7 +134,7 @@ const offers: FullOffer[] = [
     "Dishwasher",
     "Washing machine",
     "Coffee machine",
-    "Laptop friendly workspace",
+    "Laptop friendly",
     "TV",
     "Elevator",
     "Parking"
@@ -151,7 +151,7 @@ const offers: FullOffer[] = [
   "maxAdults": 4
 },
 {
-  "id": "ccc29d3h-6ea5-669g-0ea7-fe97e9f61g5e",
+  "id": "bbb06a0e-3f92-446d-9a68-cb64b5d38e2b3",
   "title": "MedienHafen Designer Loft",
   "description": "Industrial-chic loft in Düsseldorf's famous MedienHafen. Exposed concrete, designer furniture, and balcony overlooking the Rhine. Walking distance to bars and restaurants.",
   "type": "apartment",
@@ -183,7 +183,7 @@ const offers: FullOffer[] = [
     "Balcony",
     "Kitchen",
     "Coffee machine",
-    "Laptop friendly workspace",
+    "Laptop friendly",
     "TV",
     "Washing machine",
     "Dishwasher",

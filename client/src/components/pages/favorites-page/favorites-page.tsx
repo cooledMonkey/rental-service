@@ -1,9 +1,13 @@
 import { JSX } from "react";
 import { FavoritesList } from "../../favourites-list/favorite-list";
 import { Logo } from "../../logo/logo";
+import { OffersList } from "../../../types/offer";
 
+type FavoritesPageProps = {
+    offersList: OffersList[];
+}
 
-function FavoritesPage(): JSX.Element {
+function FavoritesPage({offersList} : FavoritesPageProps): JSX.Element {
     return(
         <div className="page">
       <header className="header">
@@ -37,8 +41,7 @@ function FavoritesPage(): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-             <FavoritesList/>
-             <FavoritesList/>
+             <FavoritesList offersList={offersList}/>
             </ul>
           </section>
         </div>

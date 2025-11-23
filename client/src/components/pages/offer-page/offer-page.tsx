@@ -3,15 +3,20 @@ import { ReviewsItem } from "../../reviews-item/reviews-item";
 import { OfferHost } from "../../offer-host/offer-host";
 import { OfferInside } from "../../offer-inside/offer-inside";
 import { Logo } from "../../logo/logo";
-import { FullOffer, OffersList } from "../../../types/offer";
-import { CitiesCardList } from "../../cities-card-list/cities-card-list";
+import { FullOffer } from "../../../types/offer";
+import { useParams } from "react-router-dom";
+import { NotFoundPage } from "../not-found-page/not-found-page";
 
 type OfferProps = {
-  offer: FullOffer;
-  offers: OffersList[];
+  offers: FullOffer[];
 }
 
-function OfferPage({offer, offers}: OfferProps): JSX.Element{
+function OfferPage({offers}: OfferProps): JSX.Element{
+  const params = useParams();
+  const offer = offers.find((item) => item.id === params.id);
+  if(!offer){
+    return <NotFoundPage />
+  }
 return(
     <div className="page">
       <header className="header">
@@ -87,11 +92,11 @@ return(
           </li>
         </ul>
         <div className="offer__price">
-          <b className="offer__price-value">&euro;120</b>
+          <b className="offer__price-value">&euro;{offer.price}</b>
           <span className="offer__price-text">&nbsp;night</span>
         </div>
         
-        <OfferInside />
+        <OfferInside names={offer.goods} />
       
         <OfferHost host={offer.host}/>
         <section className="offer__reviews reviews">
@@ -156,7 +161,7 @@ return(
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        <CitiesCardList offersList={offers}/>
+        {/* <CitiesCardList offersList={offers}/> */}
       </div>
     </section>
   </div>

@@ -20,13 +20,13 @@ function App({rentalOffersCount, offersList, offers}: AppMainPageProps){
             <Route path={AppRoute.Main}
                 element={<MainPage rentalOffersCount={rentalOffersCount} offersList={offersList}/>} >
             </Route>
-            <Route path={AppRoute.Offer} element={<OfferPage offer = {offers[0]} offers={offersList}/>}  />
+            <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage offers={offers}/>}  />
               <Route
                 path={ AppRoute.Favorites }
                 element={
               <PrivateRoute
                 authorizationStatus={ AuthorizationStatus.Auth }>
-                <FavoritesPage />
+                <FavoritesPage offersList={offersList}/>
 
               </PrivateRoute>
             }
