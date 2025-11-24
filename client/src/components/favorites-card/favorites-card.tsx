@@ -16,10 +16,14 @@ type FavoritesCardProps = {
 function FavoritesCard({id, title, type, price, previewImage, isPremium, rating}: FavoritesCardProps): JSX.Element{
 return(
                   <article className="favorites__card place-card">
+                    
                     {isPremium ? (
+                      <div className="place-card__mark">
                     <div className="offer__mark">
                       <span>Premium</span>
-                    </div>) : null}
+                    </div>
+                  </div>) : null}
+
                     <div className="favorites__image-wrapper place-card__image-wrapper">
                       <Link to={`${AppRoute.Offer}/${id}`}>
                       <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image">
@@ -41,7 +45,7 @@ return(
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">
-                          <span style={{width: "100%"}}></span>
+                          <span style={{width: `${(Number(rating) * 20.0)}%`}} />
                           <span className="visually-hidden">{rating}</span>
                         </div>
                       </div>

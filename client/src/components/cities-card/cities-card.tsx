@@ -15,12 +15,13 @@ type CitiesCardProps = {
 function CitiesCard({id, title, type, price, previewImage, isPremium, rating}: CitiesCardProps) {
   const [, setOfferId] = useState('');
     return(<article className="cities__card place-card" onMouseOver={() => setOfferId(id)} onMouseOut={() => setOfferId('')}>
-                  <div className="place-card__mark">
+                  
                     {isPremium ? (
+                      <div className="place-card__mark">
                     <div className="offer__mark">
                       <span>Premium</span>
-                    </div>) : null}
-                  </div>
+                    </div></div>) : null}
+                  
                   <div className="cities__image-wrapper place-card__image-wrapper">
                     <Link to={`${AppRoute.Offer}/${id}`}>
                       <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image">
@@ -42,7 +43,7 @@ function CitiesCard({id, title, type, price, previewImage, isPremium, rating}: C
                     </div>
                     <div className="place-card__rating rating">
                       <div className="place-card__stars rating__stars">
-                        <span style={{width: "80%"}}></span>
+                        <span style={{width: `${(Number(rating) * 20.0)}%`}} />
                         <span className="visually-hidden">{rating}</span>
                       </div>
                     </div>

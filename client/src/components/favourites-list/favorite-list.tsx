@@ -14,7 +14,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
+                      <span>Paris</span>
                     </a>
                   </div>
                 </div>
@@ -32,7 +32,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <a className="locations__item-link" href="#">
-                      <span>Paris</span>
+                      <span>Cologne</span>
                     </a>
                   </div>
                 </div>
@@ -50,7 +50,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <a className="locations__item-link" href="#">
-                      <span>Paris</span>
+                      <span>Brussels</span>
                     </a>
                   </div>
                 </div>
@@ -63,18 +63,18 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
               </li>:
               null
           }
-            {offersList.filter(offer => offer.city?.name === "Amstedam").length > 0 ?
+            {offersList.filter(offer => offer.city?.name === "Amsterdam").length > 0 ?
             <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <a className="locations__item-link" href="#">
-                      <span>Paris</span>
+                      <span>Amsterdam</span>
                     </a>
                   </div>
                 </div>
                 <div className="favorites__places">
                   {Array.from(offersList, (item) =>
-                    (item.isFavorite&&item.city.name === "Amstedam")? <FavoritesCard key={item.id} id={item.id} title={item.title} type={item.type} 
+                    (item.isFavorite&&item.city.name === "Amsterdam")? <FavoritesCard key={item.id} id={item.id} title={item.title} type={item.type} 
                     price={item.price} previewImage={item.previewImage} isPremium={item.isPremium} rating={item.rating} />
                   : null)}
                 </div>
@@ -86,7 +86,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <a className="locations__item-link" href="#">
-                      <span>Paris</span>
+                      <span>Hamburg</span>
                     </a>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <a className="locations__item-link" href="#">
-                      <span>Paris</span>
+                      <span>Dusseldorf</span>
                     </a>
                   </div>
                 </div>
