@@ -3,16 +3,18 @@ import { ReviewsItem } from "../../reviews-item/reviews-item";
 import { OfferHost } from "../../offer-host/offer-host";
 import { OfferInside } from "../../offer-inside/offer-inside";
 import { Logo } from "../../logo/logo";
-import { FullOffer } from "../../../types/offer";
+import { FullOffer, OffersList } from "../../../types/offer";
 import { useParams } from "react-router-dom";
 import { NotFoundPage } from "../not-found-page/not-found-page";
 import { SendReviewItem } from "../../send-review-component/send-review-component";
+import { CitiesCardList } from "../../cities-card-list/cities-card-list";
 
 type OfferProps = {
   offers: FullOffer[];
+  offersList: OffersList[];
 }
 
-function OfferPage({offers}: OfferProps): JSX.Element{
+function OfferPage({offers, offersList}: OfferProps): JSX.Element{
   const params = useParams();
   const offer = offers.find((item) => item.id === params.id);
   if(!offer){
@@ -105,7 +107,7 @@ return(
           <ul className="reviews__list">
             <ReviewsItem/>
           </ul>
-          <SendReviewItem />
+            <SendReviewItem />
         </section>
       </div>
     </div>
@@ -117,7 +119,7 @@ return(
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        {/* <CitiesCardList offersList={offers}/> */}
+        { <CitiesCardList offersList={offersList}/> }
       </div>
     </section>
   </div>
