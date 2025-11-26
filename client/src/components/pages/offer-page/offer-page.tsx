@@ -20,8 +20,22 @@ function OfferPage({offers, offersList}: OfferProps): JSX.Element{
   if(!offer){
     return <NotFoundPage />
   }
+  const icon = document.getElementById('icon');
+  if(icon){
+    icon.style.display = 'hidden';
+  }
+ 
 return(
     <div className="page">
+      <div className="visually-hidden">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="icon-star" viewBox="0 0 13 12">
+          <path fill-rule="evenodd" clip-rule="evenodd" 
+          d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z">
+          </path>
+        </symbol>
+      </svg>
+    </div>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -119,7 +133,7 @@ return(
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        { <CitiesCardList offersList={offersList}/> }
+        { <CitiesCardList offersList={offersList} onOfferMouseEnter={(() => "")} onOfferMouseLeave={undefined}/> }
       </div>
     </section>
   </div>

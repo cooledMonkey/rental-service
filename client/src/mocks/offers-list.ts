@@ -8,7 +8,7 @@ export const offersList: OffersList[] = [
     'price': 370,
     'previewImage': '/img/House_Room_Dataset/living_11.jpg',
     'city': {
-        'name': 'Paris',
+        'name': 'Amsterdam',
         'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
@@ -16,8 +16,8 @@ export const offersList: OffersList[] = [
         }
     },
     'location': {
-        'latitude': 48.868610000000004,
-        'longitude' : 2.342499,
+        'latitude': 49.868610,
+        'longitude' : 3.042499,
         'zoom': 16
     },
     'isPremium': false,
@@ -32,16 +32,16 @@ export const offersList: OffersList[] = [
   "price": 420,
   'previewImage': '/img/House_Room_Dataset/living_10.jpg',
   "city": {
-    "name": "Amsterdam",
+    "name": "Hamburg",
     "location": {
-      "latitude": 48.85661,
-      "longitude": 2.351499,
-      "zoom": 13
+      "latitude": 53.551086,
+      "longitude": 9.993682,
+      "zoom": 12
     }
   },
   "location": {
-    "latitude": 48.88670,
-    "longitude": 2.343499,
+    "latitude": 53.551086,
+    "longitude": 10.00682,
     "zoom": 16
   },
   "isPremium": true,
@@ -64,7 +64,7 @@ export const offersList: OffersList[] = [
 }
 },
 'location': {
-'latitude': 48.868610000000004,
+'latitude': 49.868610000000004,
 'longitude' : 2.342499,
 'zoom': 16
 },
@@ -79,17 +79,17 @@ export const offersList: OffersList[] = [
     'type': 'apartment',
     'price': 370,
     'previewImage': '/img/House_Room_Dataset/living_3.jpg',
-'city': {
-'name': 'Hamburg',
-'location': {
-'latitude': 48.85661,
-'longitude': 2.351499,
-'zoom': 13
-}
+  "city": {
+    "name": "Hamburg",
+    "location": {
+      "latitude": 53.551086,
+      "longitude": 9.993682,
+      "zoom": 12
+    }
 },
 'location': {
-'latitude': 48.868610000000004,
-'longitude' : 2.342499,
+'latitude': 53.521086,
+'longitude' : 10.009682,
 'zoom': 16
 },
 
