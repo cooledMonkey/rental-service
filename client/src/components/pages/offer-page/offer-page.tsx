@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import { NotFoundPage } from "../not-found-page/not-found-page";
 import { SendReviewItem } from "../../send-review-component/send-review-component";
 import { CitiesCardList } from "../../cities-card-list/cities-card-list";
+import Map from "../../map/map";
+import { useActiveOffer } from "../../map/activeMarker";
 
 type OfferProps = {
   offers: FullOffer[];
@@ -15,6 +17,7 @@ type OfferProps = {
 }
 
 function OfferPage({offers, offersList}: OfferProps): JSX.Element{
+  const { activeOfferId, handleOfferMouseEnter, handleOfferMouseLeave } = useActiveOffer();
   const params = useParams();
   const offer = offers.find((item) => item.id === params.id);
   if(!offer){
@@ -126,14 +129,19 @@ return(
       </div>
     </div>
 
-    <section className="offer__map map"></section>
+    <section className="offer__map map">
+      <Map  city={offersList[0].city}
+            points={offersList}
+            selectedPoint={activeOfferId}>
+      </Map>
+    </section>
   </section>
 
   <div className="container">
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        { <CitiesCardList offersList={offersList} onOfferMouseEnter={(() => "")} onOfferMouseLeave={undefined}/> }
+        { <CitiesCardList offersList={offersList} onOfferMouseEnter={handleOfferMouseEnter} onOfferMouseLeave={handleOfferMouseLeave}/> }
       </div>
     </section>
   </div>
