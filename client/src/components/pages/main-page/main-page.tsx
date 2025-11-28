@@ -1,11 +1,13 @@
-import { JSX } from "react";
+import { JSX, useState } from "react";
 import { Logo } from "../../logo/logo";
 import { CitiesCardList } from "../../cities-card-list/cities-card-list";
 import Map from "../../map/map";
 import { useActiveOffer } from "../../map/activeMarker";
 import { useAppSelector } from "../../../hooks";
-import { getOffersByCity } from "../../../utils";
+import { getOffersByCity, sortOffersByType } from "../../../utils";
 import { CitiesList } from "../../cities-list/cities-list";
+import { SortOffer } from "../../../types/sort";
+import { SortOptions } from "../../sort-options/sort-options";
 
 function MainPage(): JSX.Element {
   const selectedCity = useAppSelector((state) => state.city)
@@ -15,6 +17,7 @@ function MainPage(): JSX.Element {
 
   const { activeOfferId, handleOfferMouseEnter, handleOfferMouseLeave } = useActiveOffer();
 
+  const [activeSort, setActiveSort] = useState<SortOffer>('Popular')
     return(<div className ="page page--gray page--main">
       <header className ="header">
         <div className ="container">
@@ -55,23 +58,10 @@ function MainPage(): JSX.Element {
             <section className ="cities__places places">
               <h2 className ="visually-hidden">Places</h2>
               <b className ="places__found">{rentalOffersCount} places to stay in Amsterdam</b>
-              <form className ="places__sorting" action="#" method="get">
-                <span className ="places__sorting-caption">Sort by</span>
-                <span className ="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use href="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
+              <SortOptions activeSorting={activeSort} onChange={(newSorting) => setActiveSort(newSorting)} />
+
               <div className="cities__places-list places__list tabs__content">
-                {<CitiesCardList offersList={selectedCityOffers}
+                {<CitiesCardList offersList={sortOffersByType(selectedCityOffers, activeSort)}
                 onOfferMouseEnter={handleOfferMouseEnter}
                 onOfferMouseLeave={handleOfferMouseLeave}/>}             
               </div>
