@@ -9,16 +9,15 @@ import { PrivateRoute } from "../private-route/private-route";
 import { FullOffer, OffersList } from "../../types/offer";
 
 type AppMainPageProps = {
-    rentalOffersCount: number;
     offersList: OffersList[];
     offers: FullOffer[];
 }
 
-function App({rentalOffersCount, offersList, offers}: AppMainPageProps){
+function App({offersList, offers}: AppMainPageProps){
     return(<BrowserRouter>
         <Routes>
             <Route path={AppRoute.Main}
-                element={<MainPage rentalOffersCount={rentalOffersCount} offersList={offersList}/>} >
+                element={<MainPage />} >
             </Route>
             <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage offers={offers} offersList={offersList.slice(0, 3)}/>}  />
               <Route

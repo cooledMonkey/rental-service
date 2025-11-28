@@ -1,15 +1,14 @@
 import { JSX } from "react";
-import { ReviewsItem } from "../../reviews-item/reviews-item";
 import { OfferHost } from "../../offer-host/offer-host";
 import { OfferInside } from "../../offer-inside/offer-inside";
 import { Logo } from "../../logo/logo";
 import { FullOffer, OffersList } from "../../../types/offer";
 import { useParams } from "react-router-dom";
 import { NotFoundPage } from "../not-found-page/not-found-page";
-import { SendReviewItem } from "../../send-review-component/send-review-component";
 import { CitiesCardList } from "../../cities-card-list/cities-card-list";
 import Map from "../../map/map";
 import { useActiveOffer } from "../../map/activeMarker";
+import { ReviewsList } from "../../reviews-list/reviews-list";
 
 type OfferProps = {
   offers: FullOffer[];
@@ -119,13 +118,7 @@ return(
         <OfferInside names={offer.goods} />
       
         <OfferHost host={offer.host}/>
-        <section className="offer__reviews reviews">
-          <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-          <ul className="reviews__list">
-            <ReviewsItem/>
-          </ul>
-            <SendReviewItem />
-        </section>
+        <ReviewsList reviewsAmount={1} />
       </div>
     </div>
 

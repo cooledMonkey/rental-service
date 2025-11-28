@@ -1,27 +1,19 @@
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import { Logo } from "../../logo/logo";
 import { CitiesCardList } from "../../cities-card-list/cities-card-list";
-import { OffersList } from "../../../types/offer";
 import Map from "../../map/map";
 import { useActiveOffer } from "../../map/activeMarker";
-import { SelectCity } from "../../select-city/select-city";
-import { CITIES } from "../../../const";
+import { useAppSelector } from "../../../hooks";
+import { getOffersByCity } from "../../../utils";
+import { CitiesList } from "../../cities-list/cities-list";
 
-type MainPageProps = {
-    rentalOffersCount: number;
-    offersList: OffersList[];
-}
+function MainPage(): JSX.Element {
+  const selectedCity = useAppSelector((state) => state.city)
+  const offersList = useAppSelector((state) => state.offers)
+  const selectedCityOffers = getOffersByCity(selectedCity?.name, offersList);
+  const rentalOffersCount = selectedCityOffers.length;
 
-function MainPage({rentalOffersCount, offersList} : MainPageProps): JSX.Element {
   const { activeOfferId, handleOfferMouseEnter, handleOfferMouseLeave } = useActiveOffer();
-
-  const [currentCity, setCurrentCity] = useState('Amsterdam');
-
-  const filteredOffers = offersList.filter(offer => offer.city.name === currentCity);
-
-  const handleCityChange = (city: string) => {
-    setCurrentCity(city); 
-  };
 
     return(<div className ="page page--gray page--main">
       <header className ="header">
@@ -55,10 +47,7 @@ function MainPage({rentalOffersCount, offersList} : MainPageProps): JSX.Element 
         <h1 className ="visually-hidden">Cities</h1>
         <div className ="tabs">
           <section className ="locations container">
-            <SelectCity 
-              currentCity={currentCity}
-              onCityChange={handleCityChange}
-              ></SelectCity>
+            <CitiesList selectedCity={selectedCity} />
           </section>
         </div>
         <div className ="cities">
@@ -82,7 +71,7 @@ function MainPage({rentalOffersCount, offersList} : MainPageProps): JSX.Element 
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {<CitiesCardList offersList={filteredOffers}
+                {<CitiesCardList offersList={selectedCityOffers}
                 onOfferMouseEnter={handleOfferMouseEnter}
                 onOfferMouseLeave={handleOfferMouseLeave}/>}             
               </div>
@@ -90,8 +79,8 @@ function MainPage({rentalOffersCount, offersList} : MainPageProps): JSX.Element 
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                city={CITIES.filter(city => city.id === currentCity)[0].city}
-                points={filteredOffers}
+                city={selectedCity}
+                points={selectedCityOffers}
                 selectedPoint={activeOfferId}>
                 </Map>
               </section>
