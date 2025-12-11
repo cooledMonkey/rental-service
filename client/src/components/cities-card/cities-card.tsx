@@ -23,7 +23,7 @@ function CitiesCard({id, title, type, price, previewImage, isPremium, rating}: C
                     </div></div>) : null}
                   
                   <div className="cities__image-wrapper place-card__image-wrapper">
-                    <Link to={`${AppRoute.Offer}/${id}`}>
+                    <Link to={`${AppRoute.Offer}/${id}`} onClick={() => window.scrollTo(0, 0)}>
                       <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image">
                     </img>
                     </Link>

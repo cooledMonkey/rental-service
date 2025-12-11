@@ -1,10 +1,15 @@
 import { JSX } from 'react';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addReview } from '../../store/action';
 
+type SendReviewProps = {
+  offerId: string
+}
 
-
-function SendReviewItem(): JSX.Element {
+function SendReviewItem({offerId}: SendReviewProps): JSX.Element {
   const [rating, setRating] = useState(0);
+  const dispatch = useDispatch();
 
   const handleRatingChange = (event : React.ChangeEvent<HTMLInputElement>) => {
     setRating(Number(event.target.value));
@@ -14,6 +19,27 @@ function SendReviewItem(): JSX.Element {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {  
     setMessage(event.target.value);  
 };  
+
+const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const newReview = {
+      id: Date.now().toString(), 
+      offerId: offerId,
+      comment: message,
+      date: new Date().toISOString(),
+      rating: rating,
+      user: {
+            name: 'Isaac',
+            avatarUrl: '/img/avatar/avatar3.webp',
+            isPro: true
+      }, 
+
+    };
+    dispatch(addReview(newReview));
+    setRating(0);
+    setMessage('');
+  };
+
   return (
   <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -65,10 +91,9 @@ function SendReviewItem(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={message.length < 50}
-        >
-          Submit
-        </button>
+          disabled={message.length < 50}  
+          onClick={handleSubmit}      
+          >Submit</button>
       </div>
     </form>
   );

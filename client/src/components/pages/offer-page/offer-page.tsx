@@ -9,6 +9,7 @@ import { CitiesCardList } from "../../cities-card-list/cities-card-list";
 import Map from "../../map/map";
 import { useActiveOffer } from "../../map/activeMarker";
 import { ReviewsList } from "../../reviews-list/reviews-list";
+import {Link} from 'react-router-dom';
 
 type OfferProps = {
   offers: FullOffer[];
@@ -32,7 +33,7 @@ return(
       <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg">
         <symbol id="icon-star" viewBox="0 0 13 12">
-          <path fill-rule="evenodd" clip-rule="evenodd" 
+          <path fillRule="evenodd" clipRule="evenodd" 
           d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z">
           </path>
         </symbol>
@@ -47,12 +48,12 @@ return(
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                  <Link to="/favorites" className ="header__nav-link header__nav-link--profile">
+                    <div className ="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Myemail@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
+                    <span className ="header__user-name user__name">Myemail@gmail.com</span>
+                    <span className ="header__favorite-count">3</span>                    
+                  </Link>
                 </li>
                 <li className="header__nav-item">
                   <a className="header__nav-link" href="#">
@@ -118,7 +119,7 @@ return(
         <OfferInside names={offer.goods} />
       
         <OfferHost host={offer.host}/>
-        <ReviewsList reviewsAmount={1} />
+        <ReviewsList offerId={offer.id} />
       </div>
     </div>
 

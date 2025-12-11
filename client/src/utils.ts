@@ -1,5 +1,5 @@
 import { SortOffersType } from "./const";
-import { CityOffer, OffersList } from "./types/offer"
+import { CityOffer, OffersList, Review } from "./types/offer"
 import { SortOffer } from "./types/sort";
 
 function getCity(name: string, cityOffers: CityOffer[]){
@@ -9,7 +9,6 @@ function getCity(name: string, cityOffers: CityOffer[]){
 function getOffersByCity(city: string, offersList: OffersList[]){
     return city == undefined ? offersList : offersList.filter((x) => x.city.name === city);
 }
-
 
 function sortOffersByType (offers: OffersList[], type: SortOffer): OffersList[] { switch (type) {
     case SortOffersType.PriceToHigh:
@@ -23,4 +22,8 @@ function sortOffersByType (offers: OffersList[], type: SortOffer): OffersList[] 
     }
 }
 
-export {getCity, getOffersByCity, sortOffersByType};
+function getRewviewsByPlaceId(offerId: string, reviewsList: Review[]){
+    return offerId == undefined ? reviewsList : reviewsList.filter((x) => x.offerId === offerId);
+}
+
+export {getCity, getOffersByCity, sortOffersByType, getRewviewsByPlaceId};

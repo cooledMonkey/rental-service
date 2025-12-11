@@ -54,6 +54,7 @@ export type User = {
 
 export type Review = {
     id: string;
+    offerId: string;
     date: string;
     user: User;
     comment: string;

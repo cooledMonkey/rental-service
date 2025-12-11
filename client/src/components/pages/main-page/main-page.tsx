@@ -8,6 +8,7 @@ import { getOffersByCity, sortOffersByType } from "../../../utils";
 import { CitiesList } from "../../cities-list/cities-list";
 import { SortOffer } from "../../../types/sort";
 import { SortOptions } from "../../sort-options/sort-options";
+import {Link} from 'react-router-dom';
 
 function MainPage(): JSX.Element {
   const selectedCity = useAppSelector((state) => state.city)
@@ -27,14 +28,18 @@ function MainPage(): JSX.Element {
             </div>
             <nav className ="header__nav">
               <ul className ="header__nav-list">
+                
                 <li className ="header__nav-item user">
-                  <a className ="header__nav-link header__nav-link--profile" href="#">
+                  
+                  <Link to="/favorites" className ="header__nav-link header__nav-link--profile">
                     <div className ="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className ="header__user-name user__name">Myemail@gmail.com</span>
-                    <span className ="header__favorite-count">3</span>
-                  </a>
+                    <span className ="header__favorite-count">3</span>                    
+                  </Link>
+                  
                 </li>
+                
                 <li className ="header__nav-item">
                   <a className ="header__nav-link" href="#">
                     <span className ="header__signout">Sign out</span>
@@ -57,7 +62,7 @@ function MainPage(): JSX.Element {
           <div className ="cities__places-container container">
             <section className ="cities__places places">
               <h2 className ="visually-hidden">Places</h2>
-              <b className ="places__found">{rentalOffersCount} places to stay in Amsterdam</b>
+              <b className ="places__found">{rentalOffersCount} places to stay in {selectedCity.name}</b>
               <SortOptions activeSorting={activeSort} onChange={(newSorting) => setActiveSort(newSorting)} />
 
               <div className="cities__places-list places__list tabs__content">

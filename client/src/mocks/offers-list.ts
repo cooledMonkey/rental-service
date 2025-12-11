@@ -16,9 +16,9 @@ export const offersList: OffersList[] = [
         }
     },
     'location': {
-        'latitude': 49.868610,
-        'longitude' : 3.042499,
-        'zoom': 16
+        'latitude': 52.4226,
+        'longitude' : 4.8122,
+        'zoom': 13
     },
     'isPremium': false,
     'isFavorite': true,
@@ -45,7 +45,7 @@ export const offersList: OffersList[] = [
     "zoom": 16
   },
   "isPremium": true,
-  "isFavorite": true,
+  "isFavorite": false,
   "rating": 1.7,
 },
 
@@ -64,8 +64,8 @@ export const offersList: OffersList[] = [
 }
 },
 'location': {
-'latitude': 49.868610000000004,
-'longitude' : 2.342499,
+'latitude': 48.868610000000004,
+'longitude' : 2.352499,
 'zoom': 16
 },
 

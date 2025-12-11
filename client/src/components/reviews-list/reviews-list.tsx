@@ -1,18 +1,22 @@
 
 import { ReviewsItem } from "../reviews-item/reviews-item";
 import { SendReviewItem } from "../send-review-component/send-review-component";
+import { useAppSelector } from "../../hooks";
+import { getRewviewsByPlaceId } from "../../utils";
 
 type ReviewsListProps = {
-    reviewsAmount: number;
+    offerId: string;
 }
 
-function ReviewsList({reviewsAmount}: ReviewsListProps){
+function ReviewsList({offerId}: ReviewsListProps){
+  const reviewsList = useAppSelector((state) => state.reviews)
     return(<section className="offer__reviews reviews">
-          <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsAmount}</span></h2>
+          <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{getRewviewsByPlaceId(offerId, reviewsList).length}</span></h2>
           <ul className="reviews__list">
-            <ReviewsItem/>
+            {reviewsList.length == 0 ? null :
+            Array.from(getRewviewsByPlaceId(offerId, reviewsList), (review) => <ReviewsItem key={review.id} review={review} />)}
           </ul>
-            <SendReviewItem />
+            <SendReviewItem offerId={offerId}/>
         </section>);
 }
 export {ReviewsList};

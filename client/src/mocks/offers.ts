@@ -44,7 +44,7 @@ const offers: FullOffer[] = [
   'host':{
     'isPro': true,
     'name': 'Angelina',
-    'avatarUrl': '/img/avatar/avatar-1.webp'
+    'avatarUrl': '/img/avatar/avatar3.webp'
 },
   'isPremium': false,
   'isFavorite': true,
@@ -92,7 +92,7 @@ const offers: FullOffer[] = [
   "host": {
     "isPro": true,
     "name": "Sophie",
-    "avatarUrl": "/img/avatar/avatar-2.jpg"
+    "avatarUrl": "/img/avatar/avatar3.webp"
   },
   "isPremium": true,
   "isFavorite": true,
@@ -115,10 +115,10 @@ const offers: FullOffer[] = [
     "/img/House_Room_Dataset/living_2.jpg"
   ],
   "city": {
-    "name": "Hamburg",
+    "name": "Paris",
     "location": {
-      "latitude": 53.551086,
-      "longitude": 9.993682,
+      "latitude": 48.85661,
+      "longitude": 2.35149,
       "zoom": 12
     }
   },
@@ -143,10 +143,10 @@ const offers: FullOffer[] = [
   "host": {
     "isPro": false,
     "name": "Thomas",
-    "avatarUrl": "/img/avatar/avatar-2.jpg"
+    "avatarUrl": "/img/avatar-angelina.jpg"
   },
   "isPremium": false,
-  "isFavorite": true,
+  "isFavorite": false,
   "rating": 4.5,
   "bedrooms": 2,
   "maxAdults": 4
@@ -194,7 +194,7 @@ const offers: FullOffer[] = [
   "host": {
     "isPro": true,
     "name": "Klaus",
-    "avatarUrl": "/img/avatar/avatar-1.webp"
+    "avatarUrl": "/img/avatar-max.jpg"
   },
   "isPremium": true,
   "isFavorite": true,

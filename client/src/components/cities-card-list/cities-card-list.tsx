@@ -14,8 +14,8 @@ function CitiesCardList({offersList, onOfferMouseEnter, onOfferMouseLeave}: Citi
                     We could not find any property available at the moment in this city
                 </p> : 
                         Array.from(offersList, (item) =>
-            <article  onMouseEnter={() => onOfferMouseEnter(item.id)} onMouseLeave={onOfferMouseLeave}>
-            <CitiesCard key={item.id} id={item.id} title={item.title} type={item.type} 
+            <article  key={item.id} onMouseEnter={() => onOfferMouseEnter(item.id)} onMouseLeave={onOfferMouseLeave}>
+            <CitiesCard  id={item.id} title={item.title} type={item.type} 
                 price={item.price} previewImage={item.previewImage} isPremium={item.isPremium} rating={item.rating}
                  />
             </article>)
