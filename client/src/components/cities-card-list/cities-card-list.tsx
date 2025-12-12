@@ -16,7 +16,7 @@ function CitiesCardList({offersList, onOfferMouseEnter, onOfferMouseLeave}: Citi
                         Array.from(offersList, (item) =>
             <article  key={item.id} onMouseEnter={() => onOfferMouseEnter(item.id)} onMouseLeave={onOfferMouseLeave}>
             <CitiesCard  id={item.id} title={item.title} type={item.type} 
-                price={item.price} previewImage={item.previewImage} isPremium={item.isPremium} rating={item.rating}
+                price={item.price} previewImage={item.previewImage} isPremium={item.isPremium} rating={item.rating} isFavorite={item.isFavorite}
                  />
             </article>)
             }

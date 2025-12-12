@@ -3,7 +3,7 @@ import leaflet from 'leaflet';
 import { CityOffer } from '../../types/offer';
 
 type UseMapProps = {
-  mapRef: React.RefObject<HTMLDivElement | null>; // исправленный тип
+  mapRef: React.RefObject<HTMLDivElement | null>; 
   city: CityOffer;
 };
 
