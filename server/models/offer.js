@@ -2,9 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 import User from './user.js';
 
-
 class Offer extends Model {}
-
 
 Offer.init({
   title: {
@@ -90,9 +88,6 @@ Offer.init({
   tableName: 'offers'
 });
 
-
-// Связь с пользователем
 Offer.belongsTo(User, { as: 'author', foreignKey: 'authorId' });
-
 
 export default Offer;
