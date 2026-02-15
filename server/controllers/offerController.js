@@ -14,8 +14,15 @@ async function getAllOffers(req, res, next){
     }
 }
 
-export {getAllOffers};
-
+async function getFavoriteOffers(req, res, next){
+    try{
+        const offers = await Offer.findAll();
+        const adaptedOffers = offers.map(adaptOfferToClient).filter(x => x.isFavorite == true);
+        res.status(200).json(adaptedOffers);
+    } catch(error){
+        next(ApiError.internal('Не удалось получить список предложений'));
+    }
+}
 
 export async function createOffer(req, res, next) {
  try {
@@ -119,4 +126,20 @@ const getFullOffer = async (req, res, next) => {
   }
 };
 
-export {getFullOffer};
+const toggleFavorite = async (req, res, next) => { try {
+  const {offerId, status } = req.params;
+  const offer = await Offer.findByPk (offerId);
+  if (!offer) {
+    return next (ApiError.notFound('Предложение не найдено'));
+  }
+  
+  offer.isFavorite = status === '1';
+  await offer.save();
+  res.json (offer);
+}catch (error) {
+  next(ApiError.internal('Ошибка при обновлении статуса избранного'));
+}
+};
+
+export {getFullOffer, toggleFavorite, getAllOffers, getFavoriteOffers};
+
