@@ -81,5 +81,11 @@ Popular: 'Popular',
 PriceToHigh: 'Price: low to high',
 PriceToLow: 'Price: high to low', TopRated: 'Top rated first'}
 
-export {CITIES_LOCATION, SortOffersType}
+const APIRoute = {
+  Offers : '/offers',
+  Login : '/login',
+  Logout : '/logout',
+};
+
+export {CITIES_LOCATION, SortOffersType, APIRoute}
 

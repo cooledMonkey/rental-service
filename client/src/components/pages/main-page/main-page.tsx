@@ -9,11 +9,12 @@ import { CitiesList } from "../../cities-list/cities-list";
 import { SortOffer } from "../../../types/sort";
 import { SortOptions } from "../../sort-options/sort-options";
 import {Link} from 'react-router-dom';
+import { CITIES_LOCATION } from "../../../const";
 
 function MainPage(): JSX.Element {
   const selectedCity = useAppSelector((state) => state.city)
   const offersList = useAppSelector((state) => state.offers)
-  const selectedCityOffers = getOffersByCity(selectedCity?.name, offersList);
+  const selectedCityOffers = getOffersByCity(selectedCity, offersList);
   const rentalOffersCount = selectedCityOffers.length;
 
   const { activeOfferId, handleOfferMouseEnter, handleOfferMouseLeave } = useActiveOffer();
@@ -65,7 +66,7 @@ function MainPage(): JSX.Element {
           <div className ="cities__places-container container">
             <section className ="cities__places places">
               <h2 className ="visually-hidden">Places</h2>
-              <b className ="places__found">{rentalOffersCount} places to stay in {selectedCity.name}</b>
+              <b className ="places__found">{rentalOffersCount} places to stay in {selectedCity == undefined ? "Paris" : selectedCity.name}</b>
               <SortOptions activeSorting={activeSort} onChange={(newSorting) => setActiveSort(newSorting)} />
 
               <div className="cities__places-list places__list tabs__content">
@@ -77,7 +78,7 @@ function MainPage(): JSX.Element {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map 
-                city={selectedCity}
+                city={selectedCity == undefined? CITIES_LOCATION[0] : selectedCity}
                 points={selectedCityOffers}
                 selectedPoint={activeOfferId}>
                 </Map>

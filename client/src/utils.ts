@@ -6,8 +6,8 @@ function getCity(name: string, cityOffers: CityOffer[]){
     return cityOffers.filter((x: CityOffer) => x.name === name)[0];
 }
 
-function getOffersByCity(city: string, offersList: OffersList[]){
-    return city == undefined ? offersList : offersList.filter((x) => x.city.name === city);
+function getOffersByCity(city: CityOffer | undefined, offersList: OffersList[]){
+    return city == undefined ? offersList : offersList.filter((x) => x.city.name === city.name);
 }
 
 function sortOffersByType (offers: OffersList[], type: SortOffer): OffersList[] { switch (type) {

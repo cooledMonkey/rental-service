@@ -1,0 +1,88 @@
+import {AxiosInstance} from 'axios';
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {AppDispatch, State} from '../types/state.js';
+import { OffersList } from '../types/offer.js';
+import {offersCityList, requireAuthorization, setError, setOffersDataLoadingStatus} from './action.js';
+import {saveToken, dropToken} from '../services/token.js';
+import {APIRoute, AuthorizationStatus} from '../const.js';
+import {AuthData, UserData} from '../types/user-data.js';
+import { store } from './index.js';
+
+const TIMEOUT_SHOW_ERROR = 2000;
+
+const fetchOffersAction = createAsyncThunk<void, undefined, {
+ dispatch: AppDispatch;
+ state: State;
+ extra: AxiosInstance;
+}>(
+ 'data/fetchOffers',
+ async (_arg, {dispatch, extra: api}) => {
+  dispatch(setOffersDataLoadingStatus(true));
+   const {data} = await api.get<OffersList[]>(APIRoute.Offers);
+   dispatch(setOffersDataLoadingStatus(false));
+   dispatch(offersCityList(data));
+ },
+);
+
+
+const checkAuthAction = createAsyncThunk<void, undefined, {
+   dispatch: AppDispatch;
+   state: State;
+   extra: AxiosInstance;
+ }>(
+   'user/checkAuth',
+   async (_arg, {dispatch, extra: api}) => {
+     try {
+       await api.get(APIRoute.Login);
+       dispatch(requireAuthorization(AuthorizationStatus.Auth));
+     } catch {
+       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+     }
+   },
+ );
+
+
+const logoutAction = createAsyncThunk<void, undefined, {
+ dispatch: AppDispatch;
+ state: State;
+ extra: AxiosInstance;
+}>(
+ 'user/logout',
+ async (_arg, {dispatch, extra: api}) => {
+   await api.delete(APIRoute.Logout);
+   dropToken();
+   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+ },
+);
+const clearErrorAction = createAsyncThunk(
+   'clearError',
+   () => {
+     setTimeout(
+       () => store.dispatch(setError(null)),
+       TIMEOUT_SHOW_ERROR,
+     );
+   },
+ );
+ 
+ const loginAction = createAsyncThunk<
+ UserData,       
+ AuthData,       
+ { dispatch: AppDispatch; state: State; extra: AxiosInstance }
+>(
+ 'user/login',
+ async ({ email, password }, { dispatch, extra: api, rejectWithValue }) => {
+   try {
+     const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+     saveToken(data.token);
+     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+     return data;
+   } catch (err) {
+     dropToken();
+     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+     return rejectWithValue('Login failed');
+   }
+ }
+);
+
+
+export {fetchOffersAction, checkAuthAction, loginAction, logoutAction, clearErrorAction}

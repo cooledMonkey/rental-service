@@ -1,13 +1,10 @@
 import { JSX } from "react";
 import { FavoritesList } from "../../favourites-list/favorite-list";
 import { Logo } from "../../logo/logo";
-import { OffersList } from "../../../types/offer";
+import { useAppSelector } from "../../../hooks";
 
-type FavoritesPageProps = {
-    offersList: OffersList[];
-}
-
-function FavoritesPage({offersList} : FavoritesPageProps): JSX.Element {
+function FavoritesPage(): JSX.Element {
+  const offersList = useAppSelector((state) => state.offers)
     return(
         <div className="page">
       <header className="header">
