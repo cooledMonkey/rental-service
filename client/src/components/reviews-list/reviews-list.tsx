@@ -1,22 +1,27 @@
 
 import { ReviewsItem } from "../reviews-item/reviews-item";
 import { SendReviewItem } from "../send-review-component/send-review-component";
+import { Review } from "../../types/offer";
 import { useAppSelector } from "../../hooks";
-import { getRewviewsByPlaceId } from "../../utils";
+import { AuthorizationStatus } from "../../const";
 
 type ReviewsListProps = {
-    offerId: string;
+  offerId: string;
+    reviews: Review[];
 }
 
-function ReviewsList({offerId}: ReviewsListProps){
-  const reviewsList = useAppSelector((state) => state.reviews)
+function ReviewsList({reviews, offerId}: ReviewsListProps){
+  const reviewsList = reviews;
+  // const { reviews } = useOfferPage();
+  // console.log(reviews);
+  const authorizationStatus = useAppSelector((state) => state.app.authorizationStatus);
     return(<section className="offer__reviews reviews">
-          <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{getRewviewsByPlaceId(offerId, reviewsList).length}</span></h2>
+          <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsList.length}</span></h2>
           <ul className="reviews__list">
             {reviewsList.length == 0 ? null :
-            Array.from(getRewviewsByPlaceId(offerId, reviewsList), (review) => <ReviewsItem key={review.id} review={review} />)}
+            Array.from(reviewsList, (review) => <ReviewsItem key={review.id} review={review} />)}
           </ul>
-            <SendReviewItem offerId={offerId}/>
+          {authorizationStatus === AuthorizationStatus.Auth ? <SendReviewItem offerId={offerId}/> : null}
         </section>);
 }
 export {ReviewsList};

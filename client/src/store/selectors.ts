@@ -3,4 +3,4 @@ import { AuthorizationStatusType } from '../types/authorization-status';
 
 
 export const getAuthorizationStatus = (state: State): AuthorizationStatusType =>
- state.authorizationStatus;
+ state.app.authorizationStatus;

@@ -1,7 +1,8 @@
 import { JSX } from 'react';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addReview } from '../../store/action';
+import { postReviewAction } from '../../store/api-actions';
+import { AppDispatch } from '../../store';
 
 type SendReviewProps = {
   offerId: string
@@ -9,7 +10,7 @@ type SendReviewProps = {
 
 function SendReviewItem({offerId}: SendReviewProps): JSX.Element {
   const [rating, setRating] = useState(0);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleRatingChange = (event : React.ChangeEvent<HTMLInputElement>) => {
     setRating(Number(event.target.value));
@@ -35,7 +36,7 @@ const handleSubmit = (event: React.FormEvent) => {
       }, 
 
     };
-    dispatch(addReview(newReview));
+    dispatch(postReviewAction({offerId, reviewData: newReview}));
     setRating(0);
     setMessage('');
   };

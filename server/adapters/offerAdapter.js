@@ -40,6 +40,11 @@ const adaptFullOfferToClient = (offer, author) => {
     if (previewImage && !previewImage.startsWith('http')) {
      previewImage = `${baseUrl}${previewImage.startsWith('/') ? '' : '/'}${previewImage}`;
    }
+   let photosList = [];
+   offer.photos.forEach(element => {
+    element = `${baseUrl}${element.startsWith('/') ? '' : '/'}${element}`;
+    photosList.push(element);
+   });
     return{
   id: offer.id.toString(),
   title: offer.title,
@@ -61,7 +66,8 @@ const adaptFullOfferToClient = (offer, author) => {
   isPremium: offer.isPremium || false,
   rating: offer.rating || 0,
   previewImage: previewImage,
-
+  images: photosList,
+  goods: offer.goods,
   author: author ? {
     id: author.id,
     name: `${author.firstName || ''} ${author.lastName || ''}`.trim() || author.name,

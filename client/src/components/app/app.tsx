@@ -5,22 +5,22 @@ import { LoginPage } from "../pages/login-page/login-page"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PrivateRoute } from "../private-route/private-route";
 import { useAppSelector } from "../../hooks";
-import { AppRoute, AuthorizationStatus } from "../../const";
-import { LoadingPage } from "../pages/loading-page/loading-page";
+import { AppRoute} from "../../const";
+import { OfferPage } from "../pages/offer-page/offer-page";
 
 function App(){
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isQuestionsDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.app.authorizationStatus);
+  //const isQuestionsDataLoading = useAppSelector((state) => state.app.isOffersDataLoading);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isQuestionsDataLoading){
-    return(<BrowserRouter><LoadingPage/></BrowserRouter>)
-  }
+  // if (authorizationStatus === AuthorizationStatus.Unknown || isQuestionsDataLoading){
+  //   return(<BrowserRouter><LoadingPage/></BrowserRouter>)
+  // }
     return(<BrowserRouter>
         <Routes>
             <Route path={AppRoute.Main}
                 element={<MainPage />} >
             </Route>
-            {/* <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage offers={offers} offersList={offersList.slice(0, 3)}/>}  /> */}
+            <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage/>} />
               <Route
                 path={ AppRoute.Favorites }
                 element={

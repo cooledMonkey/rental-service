@@ -20,10 +20,10 @@ const initialState: InitialState = {
     offers: [],
     authorizationStatus: AuthorizationStatus.Unknown,
     error: null,
-    isOffersDataLoading: false,
+    isOffersDataLoading: false
 };
 
-const reducer = createReducer (initialState, (builder) => {
+const reducer = createReducer(initialState, (builder) => {
     builder
     .addCase(changeCity, (state, action) => {
         state.city = action.payload;
@@ -39,6 +39,6 @@ const reducer = createReducer (initialState, (builder) => {
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
            state.isOffersDataLoading = action.payload;
-         });
+    });
 });
 export {reducer};
