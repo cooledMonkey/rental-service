@@ -34,13 +34,20 @@ export const registration = async (req, res, next) => {
      password: hashPassword
    });
 
+   const getBaseUrl = () => `${process.env.HOST}:${process.env.PORT || 5000}`;
+   const baseUrl = getBaseUrl();
+   let avatarUrl = user.avatar;
+   if (avatarUrl && !avatarUrl.startsWith('http')) {
+     avatarUrl = `${baseUrl}${avatarUrl.startsWith('/') ? '' : '/'}${avatarUrl}`;
+   }
+
 
    res.json({
      user: {
        id: user.id,
        email: user.email,
        username: user.username,
-       avatarUrl: user.avatar,
+       avatarUrl: avatarUrl,
        isPro: user.userType === 'pro'
      }
    });

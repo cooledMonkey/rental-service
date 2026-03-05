@@ -12,8 +12,6 @@ type ReviewsListProps = {
 
 function ReviewsList({reviews, offerId}: ReviewsListProps){
   const reviewsList = reviews;
-  // const { reviews } = useOfferPage();
-  // console.log(reviews);
   const authorizationStatus = useAppSelector((state) => state.app.authorizationStatus);
     return(<section className="offer__reviews reviews">
           <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsList.length}</span></h2>

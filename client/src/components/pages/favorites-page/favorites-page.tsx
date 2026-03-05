@@ -4,7 +4,7 @@ import { Logo } from "../../logo/logo";
 import { useAppSelector } from "../../../hooks";
 
 function FavoritesPage(): JSX.Element {
-  const offersList = useAppSelector((state) => state.offers)
+  const offersList = useAppSelector((state) => state.app.favoriteOffers)
     return(
         <div className="page">
       <header className="header">

@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer as appReducer } from './reducer'; // твой старый reducer для города/авторизации
-import offersReducer from './offers-reducer'; // новый slice для офферов
+import { reducer as appReducer } from './reducer'; 
+import offersReducer from './offers-reducer'; 
 import { createAPI } from '../services/api';
 
 export const api = createAPI();
 
 export const store = configureStore({
   reducer: {
-    app: appReducer,     // город, авторизация, общий список офферов
-    offers: offersReducer // детальная информация, отзывы, nearby
+    app: appReducer,     
+    offers: offersReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -18,6 +18,5 @@ export const store = configureStore({
     }),
 });
 
-// Типизация для хуков
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

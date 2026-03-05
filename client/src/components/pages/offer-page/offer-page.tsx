@@ -2,7 +2,6 @@ import { JSX } from "react";
 import { OfferHost } from "../../offer-host/offer-host";
 import { OfferInside } from "../../offer-inside/offer-inside";
 import { Logo } from "../../logo/logo";
-//import { useParams } from "react-router-dom";
 import { NotFoundPage } from "../not-found-page/not-found-page";
 import { CitiesCardList } from "../../cities-card-list/cities-card-list";
 import Map from "../../map/map";
@@ -17,20 +16,17 @@ function OfferPage(): JSX.Element{
   const offersList = useAppSelector((state) => state.app.offers)
   const { activeOfferId, handleOfferMouseEnter, handleOfferMouseLeave } = useActiveOffer();
   const authorizationStatus = useAppSelector((state) => state.app.authorizationStatus);
-  //const params = useParams();
-  const { fullOffer, reviews } = useOfferPage();
+  const { fullOffer, reviews, isFullOffersDataLoading } = useOfferPage();
   const offer = fullOffer;
 
-  const isQuestionsDataLoading = useAppSelector((state) => state.offers.isFullOfferLoading);
-
-  if(!offer){
-    return <NotFoundPage />
-  }
-
-  if (isQuestionsDataLoading === true) {
+  if (isFullOffersDataLoading) {
     return <LoadingPage />;
   }
   
+  if(!offer && !isFullOffersDataLoading){
+    return <NotFoundPage />
+  }
+
   const icon = document.getElementById('icon');
   if(icon){
     icon.style.display = 'hidden';
@@ -47,7 +43,7 @@ return(
       </svg>
     </div>
               <div style={{'display': 'none'}}>
-      <svg xmlns="http://www.w3.org/2000/svg"><symbol id="icon-arrow-select" viewBox="0 0 7 4"><path fill-rule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"></path></symbol><symbol id="icon-bookmark" viewBox="0 0 17 18"><path d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"></path></symbol><symbol id="icon-star" viewBox="0 0 13 12"><path fillRule="evenodd" clipRule="evenodd" d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z"></path></symbol></svg>
+      <svg xmlns="http://www.w3.org/2000/svg"><symbol id="icon-arrow-select" viewBox="0 0 7 4"><path fillRule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"></path></symbol><symbol id="icon-bookmark" viewBox="0 0 17 18"><path d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"></path></symbol><symbol id="icon-star" viewBox="0 0 13 12"><path fillRule="evenodd" clipRule="evenodd" d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z"></path></symbol></svg>
     </div>
       <header className="header">
         <div className="container">

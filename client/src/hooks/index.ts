@@ -21,12 +21,10 @@ export const useOfferPage = () => {
 
   useEffect(() => {
     if (id) {
-      // Загружаем все данные
       dispatch(fetchFullOfferAction(id));
       dispatch(fetchReviewsAction(id));
     }
 
-    // Очищаем данные при уходе со страницы
     return () => {
       dispatch(clearOfferData());
     };

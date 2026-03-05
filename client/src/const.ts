@@ -18,10 +18,9 @@ const AuthorizationStatus = {
 }
 
 export const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+  '/public/img/pin.svg';
 
-export const URL_MARKER_CURRENT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+export const URL_MARKER_CURRENT = '/public/img/pin-active.svg';
 export {Settings, AppRoute, AuthorizationStatus};
 
 const CITIES_LOCATION : CityOffer[] = [
@@ -85,7 +84,8 @@ const APIRoute = {
   Offers : '/offers',
   Login : '/login',
   Logout : '/logout',
-  Comments: "/comments"
+  Comments: "/comments",
+  Favorite: '/favorite'
 };
 
 export {CITIES_LOCATION, SortOffersType, APIRoute}

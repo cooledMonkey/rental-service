@@ -2,6 +2,8 @@
 import { createAction } from '@reduxjs/toolkit';
 import { CityOffer, FullOffer, OffersList, Review } from '../types/offer';
 import { AuthorizationStatusType } from '../types/authorization-status';
+import { UserData } from '../types/user-data';
+
 
 const changeCity = createAction( 'offers/changeCity', (city: CityOffer) => ({ payload: city}));
 const offersCityList = createAction( 'offers/offersCityList', (offers: OffersList[]) => ({ payload: offers}));
@@ -16,9 +18,13 @@ const getFullOFfer = createAction('data/fetchFullOffer', (fullOffer: FullOffer) 
 const setFullOffersDataLoadingStatus = createAction<boolean>('data/setFullOffersDataLoadingStatus');
 const getReviews = createAction( 'comments/getReviews', (reviews: Review[]) => ({ payload: reviews}));
 const setReviewLoadingStatus = createAction<boolean>('data/isReviewsLoading');
-//const sendReviews = createAction<{offerId: string; reviewData: Review;}>( 'comments/postReview', ());
-
-
-export {changeCity, offersCityList, reviewsList, addReview, requireAuthorization, setError, 
+const getUserInfo = createAction('login/getUserInfo', (userData: UserData) => ({ payload: userData}));
+const favoriteOffersCityList = createAction(
+  'offers/favoriteOffersCityList', 
+  (favoriteOffers: OffersList[]) => {
+    return { payload: favoriteOffers };
+  }
+);
+export {changeCity, reviewsList, addReview, requireAuthorization, setError, 
     setOffersDataLoadingStatus, getFullOFfer, getReviews, setFullOffersDataLoadingStatus,
-setReviewLoadingStatus };
+setReviewLoadingStatus, getUserInfo, favoriteOffersCityList, offersCityList };

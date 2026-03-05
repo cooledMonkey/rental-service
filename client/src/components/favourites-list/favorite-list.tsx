@@ -9,7 +9,7 @@ type FavoritesCardListProps = {
 function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
     return(
       <div>
-      {offersList.filter(offer => offer.city?.name === "Paris").length > 0 ?
+      {(Array.from(offersList).filter(offer => offer.city?.name === "Paris").length > 0) ?
             <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -27,7 +27,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
               </li>:
               null
                   }
-                              {offersList.filter(offer => offer.city?.name === "Cologne").length > 0 ?
+                              {Array.from(offersList).filter(offer => offer.city?.name === "Cologne").length > 0 ?
             <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -45,7 +45,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
               </li>:
               null
           }
-          {offersList.filter(offer => offer.city?.name === "Brussels").length > 0 ?
+          {Array.from(offersList).filter(offer => offer.city?.name === "Brussels").length > 0 ?
             <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -55,7 +55,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {Array.from(offersList, (item) =>
+                {Array.from(offersList, (item) =>
                     (item.isFavorite&&item.city.name === "Brussels")? <FavoritesCard key={item.id} id={item.id} title={item.title} type={item.type} 
                     price={item.price} previewImage={item.previewImage} isPremium={item.isPremium} rating={item.rating} />
                   : null)}
@@ -63,7 +63,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
               </li>:
               null
           }
-            {offersList.filter(offer => offer.city?.name === "Amsterdam").length > 0 ?
+            {Array.from(offersList).filter(offer => offer.city?.name === "Amsterdam").length > 0 ?
             <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -81,7 +81,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
               </li>:
               null
           }
-                      {offersList.filter(offer => offer.city?.name === "Hamburg").length > 0 ?
+          {Array.from(offersList).filter(offer => offer.city?.name === "Hamburg").length > 0 ?
             <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
@@ -99,7 +99,7 @@ function FavoritesList({offersList}: FavoritesCardListProps): JSX.Element{
               </li>:
               null
           }
-          {offersList.filter(offer => offer.city?.name === "Dusseldorf").length > 0 ?
+          {Array.from(offersList).filter(offer => offer.city?.name === "Dusseldorf").length > 0 ?
             <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
