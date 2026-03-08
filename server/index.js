@@ -6,6 +6,8 @@ import path from 'path'
 import router from './routes/index.js'
 import errorMiddleware from './middleware/ErrorHandlingMiddleware.js'
 import { fileURLToPath } from 'url';
+import YAML from 'yamljs';
+import swaggerUi from 'swagger-ui-express';
 
 dotenv.config();
 
@@ -25,6 +27,9 @@ app.use('/static', express.static(path.resolve(__dirname, 'static')));
 
 app.use('/', router)
 app.use(errorMiddleware)
+
+const swaggerDocument = YAML.load('./docs/swagger.yaml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (req, res) => {
     res.status(200).json({message: 'Ура, все заработало!'})
