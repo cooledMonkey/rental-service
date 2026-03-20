@@ -93,13 +93,17 @@ export const login = async (req, res, next) => {
    process.env.JWT_SECRET,
    { expiresIn: '24h' }
  );
-
-
+const getBaseUrl = () => `${process.env.HOST}:${process.env.PORT || 5000}`;
+const baseUrl = getBaseUrl();
+let name = user.avatar
+if (name && !name.startsWith('http')) {
+    name = `${baseUrl}${name.startsWith('/') ? '' : '/'}${name}`;
+  }
  return res.json({
    id: user.id,
    email: user.email,
    username: user.username,
-   avatar: user.avatar,
+   avatar: name,
    isPro: user.userType === 'pro',
    token
  });

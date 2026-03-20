@@ -24,10 +24,16 @@ export function HeaderComponent(): JSX.Element{
                   
                   <Link to="/favorites" className ="header__nav-link header__nav-link--profile">
                     <div className ="header__avatar-wrapper user__avatar-wrapper">
+                      <img className="user__avatar" src={userData?.avatar} />
                     </div>
+                                       
+                  </Link>  
+                  <Link to="/favorites" className ="header__nav-link header__nav-link--profile">
+                  <div>
                     <span className ="header__user-name user__name">{userData?.email}</span>
-                    <span className ="header__favorite-count">{favoriteOffersList.length}</span>                    
-                  </Link>             
+                    <span className ="header__favorite-count">{favoriteOffersList.length}</span> 
+                  </div>  
+                  </Link>        
                 </li>:
                 <li className ="header__nav-item user">
                   <Link to="/favorites" className ="header__nav-link header__nav-link--profile">

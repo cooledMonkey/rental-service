@@ -12,18 +12,18 @@ function getOffersByCity(city: CityOffer | undefined, offersList: OffersList[]){
 
 function sortOffersByType (offers: OffersList[], type: SortOffer): OffersList[] { switch (type) {
     case SortOffersType.PriceToHigh:
-        return offers.sort((a, b) => a.price - b.price);
+        return [...offers].sort((a, b) => a.price - b.price);
     case SortOffersType.PriceToLow:
-        return offers.sort((a, b) =>b.price - a.price);
+        return [...offers].sort((a, b) =>b.price - a.price);
     case SortOffersType.TopRated:
-        return offers.sort((a, b) => b. rating - a.rating); 
+        return [...offers].sort((a, b) => b.rating - a.rating); 
     default:
         return offers;
     }
 }
 
-function getRewviewsByPlaceId(offerId: string, reviewsList: Review[]){
+function getReviewsByPlaceId(offerId: string, reviewsList: Review[]){
     return offerId == undefined ? reviewsList : reviewsList.filter((x) => x.offerId === offerId);
 }
 
-export {getCity, getOffersByCity, sortOffersByType, getRewviewsByPlaceId};
+export {getCity, getOffersByCity, sortOffersByType, getReviewsByPlaceId as getReviewsByPlaceId};

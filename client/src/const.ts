@@ -77,8 +77,8 @@ const CITIES_LOCATION : CityOffer[] = [
 
 const SortOffersType = {
 Popular: 'Popular',
-PriceToHigh: 'Price: low to high',
-PriceToLow: 'Price: high to low', TopRated: 'Top rated first'}
+PriceToHigh: 'PriceToHigh',
+PriceToLow: 'PriceToLow', TopRated: 'TopRated'}
 
 const APIRoute = {
   Offers : '/offers',
