@@ -72,25 +72,26 @@ const clearErrorAction = createAsyncThunk(
    },
  );
  
- const loginAction = createAsyncThunk<
- UserData,       
- AuthData,       
- { dispatch: AppDispatch; state: State; extra: AxiosInstance }
+const loginAction = createAsyncThunk<
+  UserData,       
+  AuthData,       
+  { dispatch: AppDispatch; state: State; extra: AxiosInstance }
 >(
- 'user/login',
- async ({ email, password }, { dispatch, extra: api, rejectWithValue }) => {
-   try {
-     const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
-     saveToken(data.token);
-     dispatch(requireAuthorization(AuthorizationStatus.Auth));
-     //await dispatch(checkAuthAction());
-     return data;
-   } catch (err) {
-     dropToken();
-     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-     return rejectWithValue('Login failed');
-   }
- }
+  'user/login',
+  async ({ email, password }, { dispatch, extra: api, rejectWithValue }) => {
+    try {
+      const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+      saveToken(data.token);
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(setError(null)); 
+      return data;
+    } catch (err) {
+      dropToken();
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+      dispatch(setError('Неверный логин или пароль')); 
+      return rejectWithValue('Login failed');
+    }
+  }
 );
 
 const fetchFullOfferAction = createAsyncThunk<void, string, {
@@ -163,6 +164,27 @@ const fetchFavoriteOffersAction = createAsyncThunk(
   },
 );
 
+const toggleFavoriteAction = createAsyncThunk< { offerId: string; status: 0 | 1 },
+  { offerId: string; status: 0 | 1 },
+  { dispatch: AppDispatch; state: State; extra: AxiosInstance }
+>(
+  'user/toggleFavorite',
+  async ({ offerId, status }, { extra: api }) => {
+    const token = getToken();
+    
+    await api.post<OffersList>(
+      `${APIRoute.Favorite}/${offerId}/${status}`,
+      {}, // тело запроса (пустое, если не нужно)
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+    return { offerId, status };
+  }
+);
+
 export {fetchOffersAction, checkAuthAction, loginAction, 
   logoutAction, clearErrorAction, fetchFullOfferAction, 
-  fetchReviewsAction, postReviewAction, fetchFavoriteOffersAction }
+  fetchReviewsAction, postReviewAction, fetchFavoriteOffersAction, toggleFavoriteAction }

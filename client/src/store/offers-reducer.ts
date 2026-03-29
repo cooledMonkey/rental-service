@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FullOffer, Review, OffersList } from '../types/offer';
+import { FullOffer, Review, OffersList, ToggleFavoriteData } from '../types/offer';
 import { getFullOFfer, getReviews, setFullOffersDataLoadingStatus } from './action';
 
 type OffersState = {
@@ -45,10 +45,16 @@ export const offersSlice = createSlice({
     .addCase(getReviews, (state, action) => {
         state.reviews = action.payload;
       })
-    // .addCase(postReviewAction, (state, action) => {
-    //   state.reviews = action.payload;
-    // })
-      ;
+    .addMatcher(
+        (action) => action.type === `user/toggleFavorite/fulfilled`,
+        (state, action: PayloadAction<ToggleFavoriteData>) => {
+          const { offerId, status } = action.payload;
+          // Обновляем fullOffer, если это тот же оффер
+          if (state.fullOffer && state.fullOffer.id === offerId) {
+            state.fullOffer.isFavorite = status === 1;
+          }
+        }
+      );
   }
 });
 

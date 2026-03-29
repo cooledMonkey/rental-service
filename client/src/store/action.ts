@@ -1,8 +1,12 @@
 
-import { createAction } from '@reduxjs/toolkit';
-import { CityOffer, FullOffer, OffersList, Review } from '../types/offer';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { CityOffer, FullOffer, OffersList, Review, ToggleFavoriteData } from '../types/offer';
 import { AuthorizationStatusType } from '../types/authorization-status';
 import { UserData } from '../types/user-data';
+import { AppDispatch } from '.';
+import { State } from '../types/state';
+import { AxiosInstance } from 'axios';
+import { APIRoute } from '../const';
 
 
 const changeCity = createAction( 'offers/changeCity', (city: CityOffer) => ({ payload: city}));
@@ -25,6 +29,22 @@ const favoriteOffersCityList = createAction(
     return { payload: favoriteOffers };
   }
 );
+const toggleFavoriteAction = createAsyncThunk<
+  ToggleFavoriteData, 
+  ToggleFavoriteData,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(
+  'user/toggleFavorite',
+  async ({ offerId, status }, { extra: api }) => {
+    await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
+    
+    return { offerId, status };
+  }
+);
 export {changeCity, reviewsList, addReview, requireAuthorization, setError, 
     setOffersDataLoadingStatus, getFullOFfer, getReviews, setFullOffersDataLoadingStatus,
-setReviewLoadingStatus, getUserInfo, favoriteOffersCityList, offersCityList };
+setReviewLoadingStatus, getUserInfo, favoriteOffersCityList, offersCityList, toggleFavoriteAction };

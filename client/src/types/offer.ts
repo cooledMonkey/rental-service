@@ -26,7 +26,7 @@ export type FullOffer = {
     isPremium: boolean;
     rating: number;
     description: string;
-    bedrooms: number;
+    rooms: number;
     goods: string[];
     host: HostOffer;
     images: string[];
@@ -60,3 +60,8 @@ export type Review = {
     comment: string;
     rating: number;
 }
+
+export type ToggleFavoriteData = {
+  offerId: string;
+  status: 0 | 1; 
+};
